@@ -3,6 +3,16 @@
 using namespace std;
 
 bool isSafe(vector<vector<int>>& board, int row, int col, int n, int type) {
+
+    
+    if (type == 1 || type == 4) {
+        for (int j = 0; j < col; j++) {
+            if (board[row][j] == 1)
+                return false;
+        }
+    }
+
+    
     if (type == 1 || type == 4) {
         for (int i = 0; i < row; i++) {
             if (board[i][col] == 1)
@@ -10,6 +20,7 @@ bool isSafe(vector<vector<int>>& board, int row, int col, int n, int type) {
         }
     }
 
+    
     if (type == 1 || type == 3) {
         for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
             if (board[i][j] == 1)
@@ -22,6 +33,7 @@ bool isSafe(vector<vector<int>>& board, int row, int col, int n, int type) {
         }
     }
 
+    
     if (type == 2) {
         int moves[8][2] = {
             {-2, -1}, {-2, 1},
@@ -42,7 +54,9 @@ bool isSafe(vector<vector<int>>& board, int row, int col, int n, int type) {
     return true;
 }
 
-bool solve(vector<vector<int>>& board, int row, int col, int placed, int n, int type) {
+bool solve(vector<vector<int>>& board, int row, int col,
+           int placed, int n, int type) {
+
     if (placed == n)
         return true;
 
